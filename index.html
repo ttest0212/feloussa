@@ -1,11 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chasse au Trésor</title>
+    <style>
+        body {
+            background-color: black;
+            color: lime;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+        #code-input {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>hello there hi</h1>
+    <h1>Bienvenue dans la Chasse au Trésor</h1>
+    <p>Pour commencer, trouve ce cœur magique : 41.30379° N, 81.90155° W</p>
+    <p>Lorsque tu auras trouvé ce qu'il représente, entre le code pour déverrouiller le prochain indice.</p>
+    <input type="text" id="code-input" placeholder="Entrez le code">
+    <button onclick="checkCode()">Valider</button>
+    <p id="error-message" style="display:none; color:red;">Accès refusé. Réessayez.</p>
+
+    <script>
+        function checkCode() {
+            const code = document.getElementById('code-input').value;
+            if (code === 'AS') {
+                window.location.href = 'puzzle.html';
+            } else {
+                document.getElementById('error-message').style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>
