@@ -19,7 +19,28 @@
         }
 
         h1, p {
-            animation: flicker 1s infinite alternate;
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 1px 1px lime;
+            }
+            20% {
+                text-shadow: -2px -2px lime;
+            }
+            40% {
+                text-shadow: 2px -2px lime;
+            }
+            60% {
+                text-shadow: -2px 2px lime;
+            }
+            80% {
+                text-shadow: 2px 2px lime;
+            }
+            100% {
+                text-shadow: -1px -1px lime;
+            }
         }
 
         img {
@@ -30,34 +51,44 @@
             animation: pulse 1.5s infinite;
         }
 
-        @keyframes flicker {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            0%, 100% {
+                box-shadow: 0 0 10px lime, 0 0 20px lime, 0 0 30px lime;
+            }
+            50% {
+                box-shadow: 0 0 20px lime, 0 0 40px lime, 0 0 60px lime;
+            }
         }
 
-        .code {
-            display: inline-block;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1.2em;
-            animation: shake 0.5s infinite alternate;
+        .hud::before, .hud::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: lime;
+            animation: flicker 2s infinite;
         }
 
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-5px); }
+        .hud::after {
+            width: 100%;
+            height: 2px;
+            animation: flicker 2s infinite reverse;
+        }
+
+        @keyframes flicker {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.1;
+            }
         }
     </style>
 </head>
-<body>
+<body class="hud">
     <h1>Félicitations ! Tu as trouvé le premier fragment.</h1>
     <p>Scanne ce QR code pour obtenir le prochain indice.</p>
     <img src="images/nn.png" alt="QR Code">
-    <p class="code">Indice suivant : Cherche là où "AS" te surprend toujours.</p>
+    <p>Indice suivant : Cherche là où "AS" te surprend toujours.</p>
 </body>
 </html>

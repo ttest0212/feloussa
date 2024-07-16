@@ -19,7 +19,28 @@
         }
 
         h1, p {
-            animation: flicker 1s infinite alternate;
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 1px 1px lime;
+            }
+            20% {
+                text-shadow: -2px -2px lime;
+            }
+            40% {
+                text-shadow: 2px -2px lime;
+            }
+            60% {
+                text-shadow: -2px 2px lime;
+            }
+            80% {
+                text-shadow: 2px 2px lime;
+            }
+            100% {
+                text-shadow: -1px -1px lime;
+            }
         }
 
         #code-input {
@@ -42,23 +63,13 @@
             animation: pulse 1.5s infinite;
         }
 
-        img {
-            margin-top: 20px;
-            max-width: 150px;
-            height: auto;
-            border: 2px solid lime;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes flicker {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            0%, 100% {
+                box-shadow: 0 0 10px lime, 0 0 20px lime, 0 0 30px lime;
+            }
+            50% {
+                box-shadow: 0 0 20px lime, 0 0 40px lime, 0 0 60px lime;
+            }
         }
 
         #error-message {
@@ -68,12 +79,40 @@
         }
 
         @keyframes shake {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-5px); }
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-5px);
+            }
+        }
+
+        .hud::before, .hud::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: lime;
+            animation: flicker 2s infinite;
+        }
+
+        .hud::after {
+            width: 100%;
+            height: 2px;
+            animation: flicker 2s infinite reverse;
+        }
+
+        @keyframes flicker {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.1;
+            }
         }
     </style>
 </head>
-<body>
+<body class="hud">
     <h1>Bienvenue dans la Chasse au Trésor</h1>
     <p>Pour commencer, trouve ce cœur magique : 41.30379° N, 81.90155° W</p>
     <p>Lorsque tu auras trouvé ce qu'il représente, entre le code pour déverrouiller le prochain indice.</p>
