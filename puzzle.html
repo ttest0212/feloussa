@@ -15,11 +15,42 @@
             height: 100vh;
             flex-direction: column;
             text-align: center;
+            overflow: hidden;
         }
+
+        h1, p {
+            animation: flicker 1s infinite alternate;
+        }
+
         img {
             margin-top: 20px;
-            max-width: 150px; /* Ajustez la largeur maximale ici */
-            height: auto; /* Garde les proportions de l'image */
+            max-width: 150px;
+            height: auto;
+            border: 2px solid lime;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .code {
+            display: inline-block;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2em;
+            animation: shake 0.5s infinite alternate;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-5px); }
         }
     </style>
 </head>
@@ -27,6 +58,6 @@
     <h1>Félicitations ! Tu as trouvé le premier fragment.</h1>
     <p>Scanne ce QR code pour obtenir le prochain indice.</p>
     <img src="images/nn.png" alt="QR Code">
-    <p>Indice suivant : Cherche là où "AS" te surprend toujours.</p>
+    <p class="code">Indice suivant : Cherche là où "AS" te surprend toujours.</p>
 </body>
 </html>
